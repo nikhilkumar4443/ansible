@@ -1,0 +1,16 @@
+---
+- name: install tomcat
+  hosts: nginx-servers
+  become: true
+  become_user: root
+  gather_facts: true
+  tasks:
+    - name: install nginx
+      package: name=nginx state=latest
+      tags: install-nginx
+    - name: copy contents 
+      copy: src=/home/ubuntu/ansible/default dest=/etc/nginx/sites-available/default
+      tags: copying
+    - name: restart-nginx
+      service: name=nginx state=restarted
+      tags: restart   

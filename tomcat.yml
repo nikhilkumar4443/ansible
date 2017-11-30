@@ -1,0 +1,13 @@
+---
+- name: install tomcat
+  hosts: tomcat-servers
+  become: true
+  become_user: root
+  gather_facts: true
+  tasks:
+    - name: install java
+      command: apt-get install openjdk-8-jdk -y
+      tags: java-install	
+    - name: install tomcat7
+      package: name=tomcat7 state=latest
+      tags: insatll-tomcat 
