@@ -1,0 +1,11 @@
+---
+
+- name: create directories
+  hosts: localhost
+  tasks:
+  - name: test-job
+    ansible.builtin.cron:
+      name: "check dirs"
+      job: "date > /tmp/output.txt"
+  become: true
+  become_user: root
